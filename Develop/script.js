@@ -14,9 +14,8 @@ $(function () {
   $( ".btn" ).on( "click", function() {
     var id = $(this).parent().attr('id');
     console.log($('#' + id).children('textarea').val());
-    textArea = $('#' + id).children('textarea');
-
-
+    var text = $('#' + id).children('textarea').val();
+    localStorage.setItem(id, JSON.stringify(text));
 
   });
 
@@ -26,13 +25,47 @@ $(function () {
   // attribute of each time-block be used to conditionally add or remove the
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
+
+
+
+
+
+
+
+  
   //
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
 
+    function getData(){
+      for (var i=9; i < 12; i++){
+
+        var hour = 'hour-' + i;
+        var storedData = JSON.parse(localStorage.getItem(hour));
+        if(storedData !== null){
+          //$('#' + hour).children('textarea').val() = storedData;
+          ($('#' + hour).children('textarea').val(storedData));
+        }
+      }
+
+      for (var i=1; i < 6; i++){
+
+        var hour = 'hour-' + i;
+        var storedData = JSON.parse(localStorage.getItem(hour));
+        if(storedData !== null){
+          //$('#' + hour).children('textarea').val() = storedData;
+          ($('#' + hour).children('textarea').val(storedData));
+        }
+      }
+    }
+
+
+
+
   //
   // TODO: Add code to display the current date in the header of the page.
       var today = dayjs();
       $('#currentDay').text(today.format('MMM D, YYYY'));
+      getData();
 });
