@@ -38,7 +38,7 @@ $(function () {
 
     //setColor contains all logic that sets the box color class based upon the time
   function setColor(){
-    var currentHour = today.format('h');
+    var currentHour = parseInt(today.format('h'));
     var amOrPM = today.format('A');
     console.log(amOrPM);
     for(var i = 9; i < 12; i++ ){
